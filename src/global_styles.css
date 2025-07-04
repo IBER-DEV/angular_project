@@ -1,0 +1,19 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --primary-color: #4a90e2;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --primary-color: #bb86fc;
+}
+html, body { height: 100%; }
+body {
+    background-color: var(--bg-color);
+     color: var(--text-color);
+     margin: 0; 
+     font-family: Roboto, 
+     "Helvetica Neue",
+      sans-serif; }
