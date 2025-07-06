@@ -1,6 +1,7 @@
 @import '@angular/material/prebuilt-themes/azure-blue.css';
 
 :root {
+  color-scheme: light dark;
   --primary-color: #1976D2;
   --accent-color: #FF9800;
   --success-color: #4CAF50;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -10,10 +11,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { HallazgosService } from '../../services/hallazgos.service';
 import { Hallazgo, FiltroHallazgos } from '../../models/hallazgo.model';
+import { HallazgoDialog } from '../../hallazgo-dialog/hallazgo-dialog';
 
 @Component({
   selector: 'app-hallazgos-lista',
@@ -29,7 +32,9 @@ import { Hallazgo, FiltroHallazgos } from '../../models/hallazgo.model';
     MatChipsModule,
     MatCardModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule,
+    HallazgoDialog
   ],
   template: `
     <div class="page-header">
@@ -41,7 +46,7 @@ import { Hallazgo, FiltroHallazgos } from '../../models/hallazgo.model';
 
     <div class="container">
       <!-- Panel de filtros -->
-      <mat-card class="filtros-card">
+      <mat-card class="filtros-card" appearance="outlined">
         <mat-card-header>
           <mat-icon mat-card-avatar>filter_list</mat-icon>
           <mat-card-title>Filtros de Búsqueda</mat-card-title>
@@ -115,7 +120,7 @@ import { Hallazgo, FiltroHallazgos } from '../../models/hallazgo.model';
               <mat-icon>clear</mat-icon>
               Limpiar Filtros
             </button>
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="primary" (click)="nuevoHallazgo()">
               <mat-icon>add</mat-icon>
               Nuevo Hallazgo
             </button>
@@ -124,7 +129,7 @@ import { Hallazgo, FiltroHallazgos } from '../../models/hallazgo.model';
       </mat-card>
 
       <!-- Tabla de hallazgos -->
-      <mat-card class="tabla-card">
+      <mat-card class="tabla-card" appearance="outlined">
         <mat-card-content>
           <div class="tabla-header">
             <h3>Resultados ({{ (hallazgosFiltrados$ | async)?.length || 0 }})</h3>
@@ -197,13 +202,13 @@ import { Hallazgo, FiltroHallazgos } from '../../models/hallazgo.model';
                 <td mat-cell *matCellDef="let hallazgo">
                   <div class="acciones-cell">
                     <button mat-icon-button (click)="verDetalle(hallazgo)" title="Ver detalle">
-                      <mat-icon>visibility</mat-icon>
+                      <mat-icon style="color: #4CAF50;">visibility</mat-icon>
                     </button>
                     <button mat-icon-button (click)="editar(hallazgo)" title="Editar">
-                      <mat-icon>edit</mat-icon>
+                      <mat-icon style="color: #FF9800;">edit</mat-icon>
                     </button>
                     <button mat-icon-button (click)="eliminar(hallazgo)" title="Eliminar" color="warn">
-                      <mat-icon>delete</mat-icon>
+                      <mat-icon style="color: #F44336;">delete</mat-icon>
                     </button>
                   </div>
                 </td>
@@ -218,6 +223,9 @@ import { Hallazgo, FiltroHallazgos } from '../../models/hallazgo.model';
     </div>
   `,
   styles: [`
+    .container{
+      margin: 20px;
+    }
     .filtros-card {
       margin-bottom: 24px;
     }
@@ -310,7 +318,11 @@ export class HallazgosListaComponent implements OnInit {
   
   hallazgosFiltrados$!: Observable<Hallazgo[]>;
 
-  constructor(private hallazgosService: HallazgosService) {}
+  constructor(
+    private hallazgosService: HallazgosService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.hallazgosFiltrados$ = combineLatest([
@@ -331,8 +343,18 @@ export class HallazgosListaComponent implements OnInit {
   }
 
   verDetalle(hallazgo: Hallazgo): void {
-    console.log('Ver detalle:', hallazgo);
-    // Implementar navegación al detalle
+    this.router.navigate(['/hallazgos', hallazgo.id]);
+  }
+
+  nuevoHallazgo(): void {
+    this.dialog.open(HallazgoDialog, {
+      width: '100vw',
+      height: '100vh',
+      panelClass: 'fullscreen-modal',
+      disableClose: true,
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '200ms'
+    });
   }
 
   editar(hallazgo: Hallazgo): void {

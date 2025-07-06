@@ -9,6 +9,7 @@ import { HallazgosService } from "../../services/hallazgos.service";
 import { EstadisticasHallazgos } from "../../models/hallazgo.model";
 import { HallazgoFormComponent } from '../../components/hallazgo-form/hallazgo-form.component';
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { HallazgoDialog } from "../../hallazgo-dialog/hallazgo-dialog";
 
 @Component({
   selector: "app-dashboard",
@@ -20,10 +21,11 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
     MatButtonModule,
     MatGridListModule,
     MatDialogModule,
+    HallazgoDialog
   ],
   template: `
     <div class="page-header">
-      <div class="container">
+      <div class="container" style="margin: 20px;">
         <h1 class="page-title">Dashboard de Hallazgos</h1>
         <p class="page-subtitle">Resumen ejecutivo y métricas clave</p>
       </div>
@@ -32,7 +34,7 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
     <div class="container ">
       <div class="card-container kpi-cards-container" *ngIf="estadisticas$ | async as stats">
         <!-- Tarjetas de estadísticas principales -->
-        <mat-card class="stats-card">
+        <mat-card class="stats-card" appearance="outlined">
           <mat-card-header>
             <mat-icon mat-card-avatar>assessment</mat-icon>
             <mat-card-title>Total de Hallazgos</mat-card-title>
@@ -43,7 +45,7 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
           </mat-card-content>
         </mat-card>
 
-        <mat-card class="stats-card">
+        <mat-card class="stats-card" appearance="outlined">
           <mat-card-header>
             <mat-icon mat-card-avatar style="color: #F44336;">error</mat-icon>
             <mat-card-title>Abiertos</mat-card-title>
@@ -54,7 +56,7 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
           </mat-card-content>
         </mat-card>
 
-        <mat-card class="stats-card">
+        <mat-card class="stats-card" appearance="outlined">
           <mat-card-header>
             <mat-icon mat-card-avatar style="color: #FF9800;"
               >schedule</mat-icon
@@ -67,7 +69,7 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
           </mat-card-content>
         </mat-card>
 
-        <mat-card class="stats-card">
+        <mat-card class="stats-card" appearance="outlined">
           <mat-card-header>
             <mat-icon mat-card-avatar style="color: #4CAF50;"
               >check_circle</mat-icon
@@ -81,7 +83,7 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
         </mat-card>
 
         <!-- Tarjeta de criticidad -->
-        <mat-card class="stats-card criticidad-card">
+        <mat-card class="stats-card criticidad-card" appearance="outlined">
           <mat-card-header>
             <mat-icon mat-card-avatar>priority_high</mat-icon>
             <mat-card-title>Por Criticidad</mat-card-title>
@@ -109,7 +111,7 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
         </mat-card>
 
         <!-- Tarjeta de distribución por área -->
-        <mat-card class="stats-card area-card">
+        <mat-card class="stats-card area-card" appearance="outlined">
           <mat-card-header>
             <mat-icon mat-card-avatar>business</mat-icon>
             <mat-card-title>Por Área</mat-card-title>
@@ -129,7 +131,7 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
       </div>
 
       <!-- Sección de acciones rápidas -->
-      <mat-card class="actions-card">
+      <mat-card class="actions-card" appearance="outlined">
         <mat-card-header>
           <mat-icon mat-card-avatar>flash_on</mat-icon>
           <mat-card-title>Acciones Rápidas</mat-card-title>
@@ -172,9 +174,12 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
       }
       .kpi-cards-container{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
       margin-bottom: 24px;
+      }
+      .container{
+        margin: 20px;
       }
       .stats-card {
         transition: all 0.3s ease;
@@ -285,13 +290,16 @@ export class DashboardComponent implements OnInit {
   constructor(private hallazgosService: HallazgosService, private dialog: MatDialog) {}
 
   abrirFormulario(): void {
-    this.dialog.open(HallazgoFormComponent, {
-      width: '800px',
-      maxWidth: '95vw',
-      autoFocus: true,
-      disableClose: false,
+    this.dialog.open(HallazgoDialog, {
+      width: '100vw',
+      height: '100vh',
+      panelClass: 'fullscreen-modal',
+      disableClose: true,
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '200ms'
     });
   }
+  
 
   ngOnInit(): void {
     this.estadisticas$ = this.hallazgosService.obtenerEstadisticas();

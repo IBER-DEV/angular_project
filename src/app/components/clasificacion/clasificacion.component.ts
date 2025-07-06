@@ -33,18 +33,18 @@ import { Hallazgo } from '../../models/hallazgo.model';
   ],
   template: `
     <div class="page-header">
-      <div class="container">
+      <div class="container" style="margin: 20px;">
         <h1 class="page-title">Clasificación de Hallazgos</h1>
         <p class="page-subtitle">Sistema dual de categorización por tipo y fecha</p>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin: 20px;">
       <mat-tab-group>
         <!-- Tab 1: Clasificación por Tipo -->
         <mat-tab label="Clasificación por Tipo">
           <div class="tab-content">
-            <mat-card class="filtro-card">
+            <mat-card class="filtro-card" appearance="outlined">
               <mat-card-header>
                 <mat-icon mat-card-avatar>category</mat-icon>
                 <mat-card-title>Filtros por Tipo</mat-card-title>
@@ -69,7 +69,7 @@ import { Hallazgo } from '../../models/hallazgo.model';
 
             <!-- Estadísticas por tipo -->
             <div class="stats-container">
-              <mat-card class="stat-card" *ngFor="let tipo of tiposEstadisticas$ | async">
+              <mat-card class="stat-card" appearance="outlined" *ngFor="let tipo of tiposEstadisticas$ | async">
                 <mat-card-content>
                   <div class="stat-header">
                     <mat-icon [style.color]="getTipoColor(tipo.nombre)">{{ getTipoIcon(tipo.nombre) }}</mat-icon>
@@ -96,7 +96,7 @@ import { Hallazgo } from '../../models/hallazgo.model';
         <!-- Tab 2: Clasificación por Fecha -->
         <mat-tab label="Clasificación por Fecha">
           <div class="tab-content">
-            <mat-card class="filtro-card">
+            <mat-card class="filtro-card" appearance="outlined">
               <mat-card-header>
                 <mat-icon mat-card-avatar>date_range</mat-icon>
                 <mat-card-title>Filtros por Fecha</mat-card-title>
@@ -133,7 +133,7 @@ import { Hallazgo } from '../../models/hallazgo.model';
             </mat-card>
 
             <!-- Timeline de hallazgos -->
-            <mat-card class="timeline-card">
+            <mat-card class="timeline-card" appearance="outlined">
               <mat-card-header>
                 <mat-icon mat-card-avatar>timeline</mat-icon>
                 <mat-card-title>Timeline de Hallazgos</mat-card-title>

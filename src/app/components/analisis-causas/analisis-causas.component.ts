@@ -31,15 +31,15 @@ import { Hallazgo, AnalisisCausas } from '../../models/hallazgo.model';
   ],
   template: `
     <div class="page-header">
-      <div class="container">
+      <div class="container" style="margin: 20px;">
         <h1 class="page-title">Análisis de Causas Raíz</h1>
         <p class="page-subtitle">Investigación colaborativa y documentación de causas</p>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin: 20px;">
       <!-- Selector de hallazgo -->
-      <mat-card class="selector-card">
+      <mat-card class="selector-card" appearance="outlined">
         <mat-card-header>
           <mat-icon mat-card-avatar>search</mat-icon>
           <mat-card-title>Seleccionar Hallazgo para Análisis</mat-card-title>
@@ -63,7 +63,7 @@ import { Hallazgo, AnalisisCausas } from '../../models/hallazgo.model';
       </mat-card>
 
       <!-- Información del hallazgo seleccionado -->
-      <mat-card class="info-card" *ngIf="hallazgoSeleccionado">
+      <mat-card class="info-card" appearance="outlined" *ngIf="hallazgoSeleccionado">
         <mat-card-header>
           <mat-icon mat-card-avatar>info</mat-icon>
           <mat-card-title>Información del Hallazgo</mat-card-title>
@@ -101,7 +101,7 @@ import { Hallazgo, AnalisisCausas } from '../../models/hallazgo.model';
       </mat-card>
 
       <!-- Formulario de análisis de causas -->
-      <mat-card class="analisis-card" *ngIf="hallazgoSeleccionado">
+      <mat-card class="analisis-card" appearance="outlined" *ngIf="hallazgoSeleccionado">
         <mat-card-header>
           <mat-icon mat-card-avatar>psychology</mat-icon>
           <mat-card-title>Análisis de Causas</mat-card-title>
@@ -247,7 +247,7 @@ import { Hallazgo, AnalisisCausas } from '../../models/hallazgo.model';
       </mat-card>
 
       <!-- Historial de análisis -->
-      <mat-card class="historial-card" *ngIf="hallazgoSeleccionado?.analisisCausas">
+      <mat-card class="historial-card" appearance="outlined" *ngIf="hallazgoSeleccionado?.analisisCausas">
         <mat-card-header>
           <mat-icon mat-card-avatar>history</mat-icon>
           <mat-card-title>Análisis Existente</mat-card-title>
@@ -361,11 +361,12 @@ import { Hallazgo, AnalisisCausas } from '../../models/hallazgo.model';
     }
 
     .historial-card {
-      margin-bottom: 24px;
+  border: 1px solid #ccc; 
+  border-radius: 8px; 
+  margin-bottom: 20px; 
     }
 
     .analisis-existente {
-      background-color: #F5F5F5;
       padding: 16px;
       border-radius: 8px;
     }

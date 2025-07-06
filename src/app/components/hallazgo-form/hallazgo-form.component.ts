@@ -252,8 +252,10 @@ import { Inject } from '@angular/core';
   `,
   styles: [`
     .form-card {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 100%;
+      margin: 0;
+      height: 100%;
+      border-radius: 0;
     }
 
     .form-grid {
@@ -263,6 +265,8 @@ import { Inject } from '@angular/core';
       margin-bottom: 24px;
     }
 
+   
+ 
     .descripcion-field {
       width: 100%;
       margin-bottom: 24px;
@@ -349,6 +353,21 @@ import { Inject } from '@angular/core';
 
     .text-warning { color: #F57C00; }
     .text-success { color: #2E7D32; }
+
+    /* Estilos para pantalla completa */
+    :host {
+      display: block;
+      height: 100%;
+    }
+
+    .container {
+      height: 100%;
+      padding: 0;
+    }
+
+    .page-header {
+      display: none; /* Ocultar header en diálogo */
+    }
 
     @media (max-width: 768px) {
       .form-grid {

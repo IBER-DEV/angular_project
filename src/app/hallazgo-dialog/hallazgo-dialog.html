@@ -1,0 +1,13 @@
+<div class="dialog-container">
+    <header class="dialog-header">
+      <h2>Nuevo Hallazgo</h2>
+      <button mat-icon-button (click)="cerrarDialogo()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </header>
+  
+    <div class="dialog-content">
+      <app-hallazgo-form (cerrar)="cerrarDialogo()"></app-hallazgo-form>
+    </div>
+  </div>
+  

@@ -2,11 +2,15 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HallazgosListaComponent } from './components/hallazgos-lista/hallazgos-lista.component';
 import { HallazgoFormComponent } from './components/hallazgo-form/hallazgo-form.component';
+import { HallazgoDetalleComponent } from './components/hallazgo-detalle/hallazgo-detalle.component';
+import { Login } from './components/login/login';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  {path: 'login', component: Login},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'hallazgos', component: HallazgosListaComponent },
+  { path: 'hallazgos/:id', component: HallazgoDetalleComponent },
   { path: 'nuevo-hallazgo', component: HallazgoFormComponent },
   { 
     path: 'clasificacion', 
