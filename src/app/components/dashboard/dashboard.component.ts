@@ -10,6 +10,7 @@ import { EstadisticasHallazgos } from "../../models/hallazgo.model";
 import { HallazgoFormComponent } from '../../components/hallazgo-form/hallazgo-form.component';
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { HallazgoDialog } from "../../hallazgo-dialog/hallazgo-dialog";
+import { BuscarHallazgo } from "../buscar-hallazgo/buscar-hallazgo";
 
 @Component({
   selector: "app-dashboard",
@@ -20,8 +21,7 @@ import { HallazgoDialog } from "../../hallazgo-dialog/hallazgo-dialog";
     MatIconModule,
     MatButtonModule,
     MatGridListModule,
-    MatDialogModule,
-    HallazgoDialog
+    MatDialogModule
   ],
   template: `
     <div class="page-header">
@@ -142,7 +142,7 @@ import { HallazgoDialog } from "../../hallazgo-dialog/hallazgo-dialog";
               <mat-icon>add</mat-icon>
               Nuevo Hallazgo
             </button>
-            <button mat-raised-button color="accent" class="action-btn">
+            <button mat-raised-button color="accent" class="action-btn" (click)="abrirBuscarHallazgo()">
               <mat-icon>search</mat-icon>
               Buscar Hallazgos
             </button>
@@ -290,9 +290,20 @@ export class DashboardComponent implements OnInit {
   constructor(private hallazgosService: HallazgosService, private dialog: MatDialog) {}
 
   abrirFormulario(): void {
-    this.dialog.open(HallazgoDialog, {
+    this.dialog.open(HallazgoDialog,  {
       width: '100vw',
       height: '100vh',
+      panelClass: 'fullscreen-modal',
+      disableClose: true,
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '200ms'
+    });
+  }
+
+  abrirBuscarHallazgo(): void {
+    this.dialog.open(BuscarHallazgo, {
+      width: '80vw',
+      height: '80vh',
       panelClass: 'fullscreen-modal',
       disableClose: true,
       enterAnimationDuration: '300ms',

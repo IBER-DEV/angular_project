@@ -10,7 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HallazgosService } from '../../services/hallazgos.service';
 import { Hallazgo, AnalisisCausas } from '../../models/hallazgo.model';
 
@@ -426,7 +426,9 @@ export class AnalisisCausasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.hallazgos$ = this.hallazgosService.obtenerTodos();
+    this.hallazgos$ = this.hallazgosService.obtenerTodos().pipe(
+          map(hallazgos => hallazgos.filter(h => h.requiereDocumentacion === true))
+    );
     this.inicializarFormulario();
   }
 

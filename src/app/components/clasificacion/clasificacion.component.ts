@@ -163,40 +163,6 @@ import { Hallazgo } from '../../models/hallazgo.model';
             </mat-card>
           </div>
         </mat-tab>
-
-        <!-- Tab 3: Vista Combinada -->
-        <mat-tab label="Vista Combinada">
-          <div class="tab-content">
-            <mat-card class="matriz-card">
-              <mat-card-header>
-                <mat-icon mat-card-avatar>grid_view</mat-icon>
-                <mat-card-title>Matriz Tipo vs Tiempo</mat-card-title>
-                <mat-card-subtitle>Análisis cruzado de clasificaciones</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                <div class="matriz-container">
-                  <div class="matriz-tabla">
-                    <div class="matriz-header">
-                      <div class="matriz-cell header-cell">Tipo / Período</div>
-                      <div class="matriz-cell header-cell">Últimos 7 días</div>
-                      <div class="matriz-cell header-cell">Últimos 30 días</div>
-                      <div class="matriz-cell header-cell">Últimos 90 días</div>
-                      <div class="matriz-cell header-cell">Total</div>
-                    </div>
-                    
-                    <div class="matriz-row" *ngFor="let tipo of tiposUnicos">
-                      <div class="matriz-cell tipo-cell">{{ tipo }}</div>
-                      <div class="matriz-cell data-cell">{{ getMatrizData(tipo, 7) }}</div>
-                      <div class="matriz-cell data-cell">{{ getMatrizData(tipo, 30) }}</div>
-                      <div class="matriz-cell data-cell">{{ getMatrizData(tipo, 90) }}</div>
-                      <div class="matriz-cell data-cell total">{{ getMatrizData(tipo, 0) }}</div>
-                    </div>
-                  </div>
-                </div>
-              </mat-card-content>
-            </mat-card>
-          </div>
-        </mat-tab>
       </mat-tab-group>
     </div>
   `,

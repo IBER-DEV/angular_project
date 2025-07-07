@@ -47,12 +47,10 @@ import { Auth } from './services/auth';
             <span matListItemTitle>Gestión de Hallazgos</span>
           </mat-list-item>
           
-          <mat-list-item routerLink="/nuevo-hallazgo" routerLinkActive="active-link">
+          <!-- <mat-list-item routerLink="/nuevo-hallazgo" routerLinkActive="active-link">
             <mat-icon matListItemIcon>add_circle</mat-icon>
             <span matListItemTitle>Nuevo Hallazgo</span>
-          </mat-list-item>
-          
-          <mat-divider></mat-divider>
+          </mat-list-item> -->
           
           <mat-list-item routerLink="/clasificacion" routerLinkActive="active-link">
             <mat-icon matListItemIcon>category</mat-icon>
@@ -64,17 +62,17 @@ import { Auth } from './services/auth';
             <span matListItemTitle>Análisis de Causas</span>
           </mat-list-item>
           
-          <mat-list-item routerLink="/actividades" routerLinkActive="active-link">
+          <!-- <mat-list-item routerLink="/actividades" routerLinkActive="active-link">
             <mat-icon matListItemIcon>task_alt</mat-icon>
             <span matListItemTitle>Planes de Acción</span>
-          </mat-list-item>
+          </mat-list-item> -->
           
           <mat-divider></mat-divider>
           
-          <mat-list-item routerLink="/reportes" routerLinkActive="active-link">
+          <!-- <mat-list-item routerLink="/reportes" routerLinkActive="active-link">
             <mat-icon matListItemIcon>analytics</mat-icon>
             <span matListItemTitle>Reportes</span>
-          </mat-list-item>
+          </mat-list-item> -->
           
           <mat-list-item routerLink="/auditoria" routerLinkActive="active-link">
             <mat-icon matListItemIcon>history</mat-icon>
